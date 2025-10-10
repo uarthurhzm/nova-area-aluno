@@ -111,6 +111,15 @@ const RecoveryPasswordDialog = () => {
 							placeholder="Digite seu CPF"
 							minLength={14}
 							maxLength={14}
+							onChange={(e) => {
+								const value = e.currentTarget.value;
+								const formattedValue = value
+									.replace(/\D/g, '')
+									.replace(/(\d{3})(\d)/, '$1.$2')
+									.replace(/(\d{3})(\d)/, '$1.$2')
+									.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+								form.setValue('cpf', formattedValue);
+							}}
 						/>
 						<div className="text-end">
 							<Button
