@@ -6,12 +6,12 @@ import Column from "@/presentation/components/ui/Column";
 import { DataTable } from "@/presentation/components/ui/data-table";
 import Flex from "@/presentation/components/ui/flex";
 import { Form } from "@/presentation/components/ui/form";
-import FormInput from "@/presentation/components/ui/form-input";
 import FormPhone from "@/presentation/components/ui/form-phone-input";
 import FormSelect from "@/presentation/components/ui/form-select";
 import SubmitButton from "@/presentation/components/ui/submit-button";
 import { TopicTitle } from "@/presentation/components/ui/topic-title";
 import { Send } from "lucide-react";
+import FormEmailInput from "../components/ui/form-email-input";
 import NoPermission from "../components/ui/no-permission";
 import { Skeleton } from "../components/ui/skeleton";
 import StandardSubpage from "../components/ui/standart-subpage";
@@ -82,13 +82,9 @@ const FormSection = ({ disciplines, documentsRefresh, disciplinesRefresh }: { di
                         />
                     </Column>
                     <Column size={6}>
-
-                        <FormInput
+                        <FormEmailInput
                             control={form.control}
-                            type="email"
                             name="email"
-                            label="E-mail"
-                            placeholder="Digite seu email"
                         />
                     </Column>
                 </Flex>

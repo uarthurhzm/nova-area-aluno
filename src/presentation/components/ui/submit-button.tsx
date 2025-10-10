@@ -23,7 +23,8 @@ export default function SubmitButton<T extends FieldValues = any>({ form, Icon, 
             {form.formState.isSubmitting
                 ? <>
                     <LoaderCircle className="animate-spin" />
-                    Enviando...</>
+                    Enviando...
+                </>
                 : <>
                     {Icon && <Icon />} {text}
                 </>

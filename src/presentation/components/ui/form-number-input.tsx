@@ -34,6 +34,7 @@ export default function FormInputNumber<T extends FieldValues>({
                         const value = e.currentTarget.value.replace(/\D/g, '');
                         field.onChange(value);
                     }}
+                    inputMode="numeric"
 
                 />
             )}

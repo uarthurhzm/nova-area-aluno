@@ -1,12 +1,10 @@
-import { Checkbox } from '@/presentation/components/ui/checkbox';
 import { Form } from '@/presentation/components/ui/form';
 import FormInput from '@/presentation/components/ui/form-input';
-import { Label } from '@/presentation/components/ui/label';
 import SubmitButton from '@/presentation/components/ui/submit-button';
 import logo_mini from '@/shared/assets/images/logos/logo-azul-login.png';
 import logo_login from '@/shared/assets/images/logos/logo-login.png';
 import { Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../components/ui/dialog';
 import Flex from '../components/ui/flex';
@@ -16,8 +14,8 @@ import { useRecoveryPasswordForm } from '../hooks/use-recovery-password-form';
 import { useTheme } from '../hooks/use-theme';
 
 export default function LoginPage() {
-	const [rememberMe, setRememberMe] = useState(false);
-	const { form, handleSubmit } = useLoginForm(rememberMe);
+	// const [rememberMe, setRememberMe] = useState(false);
+	const { form, handleSubmit } = useLoginForm(false);
 	const { setLightTheme } = useTheme();
 	const searchParams = new URLSearchParams(window.location.search);
 	const login = searchParams.get('login');
@@ -58,12 +56,12 @@ export default function LoginPage() {
 								type="password"
 							/>
 							<Flex className='mb-8 justify-between'>
-								<div className='flex items-center gap-2'>
+								{/* <div className='flex items-center gap-2'>
 									<Checkbox
 										id='remember-me'
 										checked={rememberMe} onCheckedChange={(checked) => setRememberMe(checked === true)} />
 									<Label htmlFor='remember-me'>Lembrar</Label>
-								</div>
+								</div> */}
 								<RecoveryPasswordDialog />
 							</Flex>
 							<SubmitButton

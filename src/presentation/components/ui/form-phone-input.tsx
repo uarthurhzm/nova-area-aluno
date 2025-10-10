@@ -42,6 +42,7 @@ export default function FormPhone<T extends FieldValues>({
                                 field.onChange(formatted);
                             }}
                             className="w-full"
+                            inputMode="tel"
                         />
                     </FormControl>
                     <FormMessage />

@@ -47,10 +47,11 @@ export default function ChangePasswordPage() {
                 }}
             />
             <Form {...form}>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
                     <Flex>
                         <Column size={6}>
                             <FormPassword
+                                autoComplete="new-password"
                                 control={form.control}
                                 name="newPassword"
                                 label="Nova senha"
@@ -60,6 +61,7 @@ export default function ChangePasswordPage() {
                         </Column>
                         <Column size={6}>
                             <FormPassword
+                                autoComplete="new-password"
                                 control={form.control}
                                 name="confirmPassword"
                                 label="Confirmar nova senha"

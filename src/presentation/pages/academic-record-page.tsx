@@ -2,11 +2,11 @@ import type { StudentAcademicRecordResponseDTO } from "@/application/dto/student
 import { columns } from "@/presentation/components/specific/academic-record/columns";
 import { DataTable } from "@/presentation/components/ui/data-table";
 import { Form } from "@/presentation/components/ui/form";
-import FormInput from "@/presentation/components/ui/form-input";
 import FormPhone from "@/presentation/components/ui/form-phone-input";
 import SubmitButton from "@/presentation/components/ui/submit-button";
 import { TopicTitle } from "@/presentation/components/ui/topic-title";
 import { Send } from "lucide-react";
+import FormEmailInput from "../components/ui/form-email-input";
 import NoPermission from "../components/ui/no-permission";
 import { Skeleton } from "../components/ui/skeleton";
 import StandardSubpage from "../components/ui/standart-subpage";
@@ -70,12 +70,9 @@ const FormSection = ({ onPost }: { onPost: () => void }) => {
                     label="Telefone"
                     placeholder="Digite seu telefone"
                 />
-                <FormInput
+                <FormEmailInput
                     control={form.control}
-                    type="email"
                     name="email"
-                    label="E-mail"
-                    placeholder="Digite seu email"
                 />
                 <div className="text-end">
                     <SubmitButton Icon={Send} text="Enviar requerimento" form={form} className="md:w-auto w-full" />

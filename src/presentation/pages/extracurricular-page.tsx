@@ -41,6 +41,9 @@ export default function ExtracurricularPage() {
         )
     }
 
+    console.log(activities);
+    
+
     return (
         <StandardSubpage title="Atividades Complementares">
             <Form {...form}>

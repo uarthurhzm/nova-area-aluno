@@ -1,8 +1,7 @@
-import AlertContainer from "@/presentation/components/ui/alert-container";
-import AlertText from "@/presentation/components/ui/alert-text";
 import { Button } from "@/presentation/components/ui/button";
 import { ROUTES } from "@/shared/constants/router";
 import { useNavigate } from "react-router-dom";
+import { Alert, AlertDescription } from "../components/ui/alert";
 import StandardSubpage from "../components/ui/standart-subpage";
 
 export default function CPAInformationPage() {
@@ -18,10 +17,17 @@ export default function CPAInformationPage() {
             <p>A CPA assegura que as respostas são absolutamente confidenciais e sigilosas e as respostas serão utilizadas exclusivamente para o processo da avaliação institucional.</p><br />
             <p>Sua participação é muito importante!</p> <br />
 
-            <AlertText text="IMPORTANTE: Cada pergunta será salva individualmente, possibilitando o preenchimento parcial do questionário. As questões serão marcada com um símbolo de verificação, ou seja, não haverá botão salvar no final do formulário, você poderá continuar respondendo o questionário outra hora sem se preocupar em perder o que você já respondeu." />
-            <AlertContainer>
-                <AlertText text="ANTES DE CONTINUAR VERIFIQUE SE SEU NAVEGADOR ESTÁ ATUALIZADO!" />
-            </AlertContainer>
+            <Alert variant={"destructive"}>
+                <AlertDescription>
+                    IMPORTANTE: Cada pergunta será salva individualmente, possibilitando o preenchimento parcial do questionário. As questões serão marcada com um símbolo de verificação, ou seja, não haverá botão salvar no final do formulário, você poderá continuar respondendo o questionário outra hora sem se preocupar em perder o que você já respondeu.
+                </AlertDescription>
+            </Alert>
+
+            <Alert variant={"destructive"}>
+                <AlertDescription>
+                    ANTES DE CONTINUAR VERIFIQUE SE SEU NAVEGADOR ESTÁ ATUALIZADO!
+                </AlertDescription>
+            </Alert>
 
             <Button className="mt-4 w-full md:w-fit" onClick={() => navigate(ROUTES.cpaForm)}>
                 Estou ciente e quero iniciar Questionário

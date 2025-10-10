@@ -3,13 +3,13 @@ import type { StudentDocumentsResponseDTO } from "@/application/dto/student-docu
 import type { StudentGradesResponseDTO } from "@/application/dto/student-grades-response-dto";
 import { columns as ABSENCE_COLUMNS } from "@/presentation/components/specific/absences/columns";
 import { columns as GRADES_COLUMNS } from "@/presentation/components/specific/grades/columns";
-import AlertContainer from "@/presentation/components/ui/alert-container";
 import AlertText from "@/presentation/components/ui/alert-text";
 import { DataTable } from "@/presentation/components/ui/data-table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/presentation/components/ui/tabs";
 import { MEDICINE } from "@/shared/constants/medicine";
 import { Check, TriangleAlert } from "lucide-react";
 import AcademicAlert from "../components/ui/academic-alert";
+import { Alert, AlertDescription } from "../components/ui/alert";
 import { Skeleton } from "../components/ui/skeleton";
 import StandardSubpage from "../components/ui/standart-subpage";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/table";
@@ -37,14 +37,14 @@ export default function GradesPage() {
     if (userData.CONTRATO == 0 && userData.TIPO != "1" && userData.TIPO_ALUNO == 1) {
         return (
             <StandardSubpage title={"Boletim / Faltas"}>
-                <AlertContainer>
+                {/* <AlertContainer>
                     <AlertText text="Prezado(a) aluno(a)" /> <br />
                     <p>Não identificamos a entrega do seu requerimento de matrícula e contrato na secretaria da instituição.</p><br />
                     <p>Lembramos que a entrega pode ser feita via correios ou diretamente na secretaria da instituição.</p><br />
                     <p>Em caso de dúvidas, envie um e-mail para <strong>matriculas@unilago.edu.br</strong></p><br />
 
                     <strong>Unilago</strong>
-                </AlertContainer>
+                </AlertContainer> */}
             </StandardSubpage>
         )
     }
@@ -138,27 +138,25 @@ const GradesSection = ({ grades, documents }: { grades: StudentGradesResponseDTO
             )}
 
             <div>
-                <div>
-                    <AlertText text="Importante: " />
-                    <p>informações de caráter acadêmico, sujeitas às alterações de preenchimento pelos professores até o final do período letivo.</p> <br />
-                    <p><b>Disciplinas de Adaptação e Dependências não recebem nota da Avaliação Institucional.</b></p> <br />
-                    <AlertText text="Em caso de dúvida entrar em contato com o coordenador." />
-                </div>
+                <AcademicAlert />
 
                 {userData?.CD_CSO != MEDICINE && userData?.SIT_ALUNO != 7 && (
-                    <AlertContainer>
-                        <b>Prezado(a) aluno(a)</b> <br /> <br />
+                    <Alert className="mt-8">
+                        <AlertDescription>
+                            <b>Prezado(a) aluno(a)</b> <br /> <br />
 
-                        <p>Para cursar disciplinas de adaptação ou dependência, você deverá solicitar através requerimento impresso na secretaria da instituição e, após o deferimento e recolhimento das devidas taxas(caso houver), a mesma será disponilizada para cursar.
-                            O deferimento do requerimento também dependerá da oferta da(s) disciplina(s) no respectivo ano/semestre de matrícula e respeitará o limite máximo de até 03(três) disciplinas por semestre.
-                            Para ser possível emissão do requerimento, a rematrícula deverá estar devidamente efetivada e o contrato assinado;</p><br />
+                            <p>Para cursar disciplinas de adaptação ou dependência, você deverá solicitar através requerimento impresso na secretaria da instituição e, após o deferimento e recolhimento das devidas taxas(caso houver), a mesma será disponilizada para cursar.
+                                O deferimento do requerimento também dependerá da oferta da(s) disciplina(s) no respectivo ano/semestre de matrícula e respeitará o limite máximo de até 03(três) disciplinas por semestre.
+                                Para ser possível emissão do requerimento, a rematrícula deverá estar devidamente efetivada e o contrato assinado;</p><br />
 
-                        <p> O prazo para solicitar o requerimento será até 31/01/2025; </p><br />
-                        <p>Atenciosamente, </p><br />
+                            <p> O prazo para solicitar o requerimento será até 31/01/2025; </p><br />
+                            <p>Atenciosamente, </p><br />
 
-                        <b>Secretaria</b> <br />
-                        <b>Unilago - Nada Supera o Conhecimento</b>
-                    </AlertContainer>
+                            <b>Secretaria</b> <br />
+                            <b>Unilago - Nada Supera o Conhecimento</b>
+                        </AlertDescription>
+
+                    </Alert>
                 )}
 
             </div>

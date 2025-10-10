@@ -27,9 +27,9 @@ export function DataTable<TData, TValue>({ columns, data, pagination = true }: D
     return (
         <div>
             <div className="w-full max-w-full overflow-hidden">
-                <div className="overflow-x-auto overflow-y-auto max-h-128 rounded-md border w-full">
+                <div className="overflow-x-auto overflow-y-auto max-h-128 rounded-md border w-full sticky-scroll">
                     <Table className="w-full">
-                        <TableHeader className="sticky top-0  z-10">
+                        <TableHeader className="sticky top-0 z-10 bg-white dark:bg-gray-950">
                             {table.getHeaderGroups().map((hg) => (
                                 <TableRow key={hg.id}>
                                     {hg.headers.map((h) => (
