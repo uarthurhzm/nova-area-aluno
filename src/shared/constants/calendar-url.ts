@@ -1,0 +1,1 @@
+export const CALENDAR_URL = "https://unilago.riopreto.br/calendarios/";
