@@ -11,7 +11,10 @@ const AxiosSetup = () => {
         baseURL: import.meta.env.VITE_FETCH_URL,
         timeout: 30000,
         withCredentials: true,
-        headers: { 'Content-Type': 'application/json' }
+        headers: {
+            'Content-Type': 'application/json',
+            "ngrok-skip-browser-warning": "true"
+        }
     });
 
     api.interceptors.response.use(

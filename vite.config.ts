@@ -12,16 +12,35 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'auto',
       devOptions: {
-        enabled: false // Desabilitar em dev para teste real
+        enabled: true,
+        type: 'module',
+        navigateFallback: 'index.html'
       },
-      includeAssets: ['icon-unilago.ico'],
+      includeAssets: ['icon-unilago.ico', 'pwa-512x512.png'],
       workbox: {
         clientsClaim: true,
         skipWaiting: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/_/, /\/api\//],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-cache',
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24 * 365
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
       },
       manifest: {
         name: 'UNILAGO - Área do Aluno',
@@ -33,14 +52,11 @@ export default defineConfig({
         orientation: 'portrait-primary',
         scope: '/',
         start_url: '/',
+        id: '/',
         categories: ['education', 'productivity'],
         lang: 'pt-BR',
+        prefer_related_applications: false,
         icons: [
-          // {
-          //   src: 'assets/pwa-192x192.png',
-          //   sizes: '192x192',
-          //   type: 'image/png'
-          // },
           {
             src: '/pwa-512x512.png',
             sizes: '512x512',
@@ -69,5 +85,11 @@ export default defineConfig({
       cert: fs.readFileSync('./certs/cert.pem'),
     },
   },
-
+  preview: {
+    host: true,
+    https: {
+      key: fs.readFileSync('./certs/key.pem'),
+      cert: fs.readFileSync('./certs/cert.pem'),
+    },
+  }
 })
