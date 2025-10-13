@@ -46,6 +46,7 @@ import SyllabusPage from './presentation/pages/syllabus-page'
 import TaxesPage from './presentation/pages/taxes-page'
 import UserInfoPage from './presentation/pages/user-info-page'
 import { ROUTES } from './shared/constants/router'
+import AttendancePage from './presentation/pages/attendance-page'
 
 function Main(): JSX.Element {
   useTheme();
@@ -87,6 +88,7 @@ function Main(): JSX.Element {
                 <Route path={ROUTES.studentSchedule} element={<StudentSchedulePage />} />
                 <Route path={ROUTES.syllabus} element={<SyllabusPage />} />
                 <Route path={ROUTES.extracurricularActivities} element={<ExtracurricularPage />} />
+                <Route path={ROUTES.attendance} element={<AttendancePage />} />
                 <Route path={ROUTES.enrollmentCertificate} element={<EnrollmentCertificatePage />} />
                 <Route path={ROUTES.manuals} element={<ManualsPage />} />
                 <Route path={ROUTES.downloads} element={<DownloadsPage />} />
