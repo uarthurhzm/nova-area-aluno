@@ -90,14 +90,14 @@ export default function PWAInstallPrompt() {
     // Em desenvolvimento, mostrar sempre (para teste)
     if (isDev && !localStorage.getItem('pwa-install-dismissed')) {
         return (
-            <Card className="fixed bottom-24 left-4 right-4 z-50 cinema-card border-primary/40 md:left-auto md:right-4 md:w-80">
+            <Card className="fixed bottom-24 left-4 right-4 z-50 border-primary/40 md:left-auto md:right-4 md:w-80">
                 <CardContent className="p-4">
                     <div className="flex items-start gap-3">
                         <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
                             <Download className="w-4 h-4 text-primary" />
                         </div>
                         <div className="flex-1">
-                            <h3 className="font-semibold text-sm mb-1">Instalar CineMatch</h3>
+                            <h3 className="font-semibold text-sm mb-1">Instalar</h3>
                             <p className="text-xs text-muted-foreground mb-3">
                                 Adicione à tela inicial para acesso rápido e melhor experiência
                             </p>
@@ -125,22 +125,31 @@ export default function PWAInstallPrompt() {
     }
 
     return (
-        <Card className="fixed bottom-24 left-4 right-4 z-50 cinema-card border-primary/40 md:left-auto md:right-4 md:w-80">
+        <Card className="fixed bottom-24 left-4 right-4 z-50 border-primary/40 md:left-auto md:right-4 md:w-80 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl shadow-lg border border-gray-200/50 dark:border-gray-800/50">
             <CardContent className="p-4">
                 <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Download className="w-4 h-4 text-primary" />
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-900 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                        <Download className="w-5 h-5 text-white" />
                     </div>
                     <div className="flex-1">
-                        <h3 className="font-semibold text-sm mb-1">Instalar CineMatch</h3>
-                        <p className="text-xs text-muted-foreground mb-3">
+                        <h3 className="font-semibold text-sm mb-1 text-gray-800 dark:text-white">Instalar Aplicativo</h3>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mb-3">
                             Adicione à tela inicial para acesso rápido e melhor experiência
                         </p>
                         <div className="flex gap-2">
-                            <Button size="sm" onClick={handleInstall} className="flex-1">
+                            <Button
+                                size="sm"
+                                onClick={handleInstall}
+                                className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-md transition-all duration-300 hover:scale-105"
+                            >
                                 Instalar
                             </Button>
-                            <Button size="sm" variant="outline" onClick={handleDismiss}>
+                            <Button
+                                size="sm"
+                                variant="outline"
+                                onClick={handleDismiss}
+                                className="hover:bg-gray-200/50 dark:hover:bg-gray-800/50 transition-all duration-300"
+                            >
                                 <X className="w-3 h-3" />
                             </Button>
                         </div>

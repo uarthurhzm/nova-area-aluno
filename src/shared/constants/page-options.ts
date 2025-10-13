@@ -14,11 +14,11 @@ export const PAGE_ITEMS: PageItemsProps[] = [
                 gradient: "bg-gradient-to-br from-yellow-500 via-yellow-600 to-yellow-900"
             },
             {
-                name: "Marcar Presença",
-                image: "https://img.icons8.com/?id=zSZ4mlKW8DSR&format=png",
-                route: ROUTES.presence,
-                description: "Registre sua presença nas aulas de forma rápida e segura.",
-                gradient: "bg-gradient-to-br from-green-500 via-green-600 to-emerald-700"
+                name: "Boletim / Faltas",
+                image: "https://img.icons8.com/ios-filled/50/000000/report-card.png",
+                route: ROUTES.grades,
+                description: "Acompanhe suas notas e faltas em cada disciplina.",
+                gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700"
             },
             {
                 name: "Calendário Acadêmico",
@@ -44,8 +44,16 @@ export const PAGE_ITEMS: PageItemsProps[] = [
                 image: "https://img.icons8.com/ios-filled/50/000000/report-card.png",
                 route: ROUTES.grades,
                 description: "Acompanhe suas notas e faltas em cada disciplina.",
-                gradient: "bg-gradient-to-br from-yellow-500 via-yellow-600 to-yellow-700"
+                gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700"
             },
+            {
+                name: "Marcar Presença",
+                image: "https://img.icons8.com/?id=zSZ4mlKW8DSR&format=png",
+                route: ROUTES.presence,
+                description: "Registre sua presença nas aulas de forma rápida e segura.",
+                gradient: "bg-gradient-to-br from-green-500 via-green-600 to-emerald-700"
+            },
+
             {
                 name: "Horários & Avaliações",
                 image: "https://img.icons8.com/?id=3524&format=png",
@@ -94,20 +102,20 @@ export const PAGE_ITEMS: PageItemsProps[] = [
                     }
                 ]
             },
-            {
-                name: "Materiais de Aula / Downloads",
-                image: "https://img.icons8.com/ios-filled/50/000000/download.png",
-                route: ROUTES.downloads,
-                description: "Baixe materiais e arquivos disponibilizados pelos professores.",
-                gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-blue-900"
-            },
-            {
-                name: "Professores da IES (diretório)",
-                image: "https://img.icons8.com/ios-filled/50/000000/teacher.png",
-                route: ROUTES.professors,
-                description: "Consulte o diretório dos professores da instituição.",
-                gradient: "bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-900"
-            },
+            // {
+            //     name: "Materiais de Aula / Downloads",
+            //     image: "https://img.icons8.com/ios-filled/50/000000/download.png",
+            //     route: ROUTES.downloads,
+            //     description: "Baixe materiais e arquivos disponibilizados pelos professores.",
+            //     gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-blue-900"
+            // },
+            // {
+            //     name: "Professores da IES (diretório)",
+            //     image: "https://img.icons8.com/ios-filled/50/000000/teacher.png",
+            //     route: ROUTES.professors,
+            //     description: "Consulte o diretório dos professores da instituição.",
+            //     gradient: "bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-900"
+            // },
             {
                 name: "Manuais & Editais (acadêmicos)",
                 image: "https://img.icons8.com/ios-filled/50/000000/manual.png",
@@ -124,9 +132,31 @@ export const PAGE_ITEMS: PageItemsProps[] = [
             }
         ]
     },
+
     {
         route: ROUTES.service,
         options: [
+            {
+                name: "Requerimento de Atendimento",
+                image: "https://img.icons8.com/?size=100&id=50896&format=png&color=000000",
+                route: ROUTES.attendance,
+                description: "Abra um requerimento para atendimento na secretaria.",
+                gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700"
+            },
+            {
+                name: "Calendário Acadêmico",
+                image: "https://img.icons8.com/?id=23&format=png",
+                route: CALENDAR_URL,
+                description: "Consulte datas importantes do semestre letivo.",
+                gradient: "bg-gradient-to-br from-purple-500 via-purple-600 to-indigo-700"
+            },
+            {
+                name: "Agenda de eventos",
+                image: "https://img.icons8.com/?id=H6LtluKL4nwE&format=png",
+                route: ROUTES.schedule,
+                description: "Veja todos os eventos acadêmicos programados.",
+                gradient: "bg-gradient-to-br from-red-500 via-red-600 to-red-700"
+            },
             {
                 name: "Financeiro",
                 image: "https://img.icons8.com/ios-filled/50/000000/money.png",
@@ -212,6 +242,27 @@ export const PAGE_ITEMS: PageItemsProps[] = [
         route: ROUTES.library,
         options: [
             {
+                name: "Bibliotecas Virtuais",
+                image: "https://img.icons8.com/ios-filled/50/000000/library.png",
+                description: "Acesse as bibliotecas virtuais disponíveis.",
+                subOptions: [
+                    {
+                        name: "Minha Biblioteca Virtual",
+                        image: "https://img.icons8.com/ios-filled/50/000000/books.png",
+                        route: "https://grupoau.com.br/moodle/mod/lti/launch.php?id=18328&amp;triggerview=0",
+                        description: "Acesse a biblioteca virtual da instituição.",
+                        gradient: "bg-gradient-to-br from-purple-500 via-purple-600 to-purple-900"
+                    },
+                    {
+                        name: "Biblioteca Pearson Virtual",
+                        image: "https://img.icons8.com/ios-filled/50/000000/open-book.png",
+                        route: "https://grupoau.com.br/moodle/mod/lti/launch.php?id=18328&amp;triggerview=0",
+                        description: "Acesse a biblioteca virtual Pearson.",
+                        gradient: "bg-gradient-to-br from-cyan-500 via-cyan-600 to-blue-900"
+                    }
+                ]
+            },
+            {
                 name: "Consulta & Reserva",
                 image: "https://img.icons8.com/ios-filled/50/000000/search.png",
                 route: ROUTES.bookReservation,
@@ -232,30 +283,38 @@ export const PAGE_ITEMS: PageItemsProps[] = [
                 description: "Veja todos os livros reservados por você.",
                 gradient: "bg-gradient-to-br from-indigo-500 via-indigo-600 to-indigo-900"
             },
-            {
-                name: "Minha Biblioteca Virtual",
-                image: "https://img.icons8.com/ios-filled/50/000000/books.png",
-                route: "https://grupoau.com.br/moodle/mod/lti/launch.php?id=18328&amp;triggerview=0",
-                description: "Acesse a biblioteca virtual da instituição.",
-                gradient: "bg-gradient-to-br from-purple-500 via-purple-600 to-purple-900"
-            },
-            {
-                name: "Biblioteca Pearson Virtual",
-                image: "https://img.icons8.com/ios-filled/50/000000/open-book.png",
-                route: "https://grupoau.com.br/moodle/mod/lti/launch.php?id=18328&amp;triggerview=0",
-                description: "Acesse a biblioteca virtual Pearson.",
-                gradient: "bg-gradient-to-br from-cyan-500 via-cyan-600 to-blue-900"
-            }
         ]
     },
     {
         route: ROUTES.messages,
         options: [
             {
-                name: "Notificações (Secretaria/Financeiro/...)",
-                image: "https://img.icons8.com/ios-filled/50/000000/appointment-reminders--v1.png",
-                description: "Receba notificações da secretaria e financeiro.",
-                gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-blue-900",
+                name: "Mural de Recados",
+                image: "https://img.icons8.com/?size=100&id=35067&format=png&color=000000",
+                route: ROUTES.noticeBoard,
+                description: "Veja comunicados e avisos importantes.",
+                gradient: "bg-gradient-to-br from-yellow-500 via-yellow-600 to-yellow-900"
+            },
+            // {
+            //     name: "Notificações",
+            //     image: "https://img.icons8.com/ios-filled/50/000000/appointment-reminders--v1.png",
+            //     description: "Receba notificações da secretaria e financeiro.",
+            //     gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-blue-900",
+            //     subOptions: [
+            //         {
+            //             name: "Nova Mensagem",
+            //             image: "https://img.icons8.com/ios-filled/50/000000/new-message.png",
+            //             route: ROUTES.newMessage,
+            //             description: "Envie uma nova mensagem.",
+            //             gradient: "bg-gradient-to-br from-green-500 via-green-600 to-green-900"
+            //         }
+            //     ]
+            // },
+            {
+                name: "Mensagens internas",
+                image: "https://img.icons8.com/ios-filled/50/000000/chat-message.png",
+                description: "Acesse suas mensagens internas.",
+                gradient: "bg-gradient-to-br from-gray-500 via-gray-600 to-gray-900",
                 subOptions: [
                     {
                         name: "Nova Mensagem",
@@ -263,15 +322,7 @@ export const PAGE_ITEMS: PageItemsProps[] = [
                         route: ROUTES.newMessage,
                         description: "Envie uma nova mensagem.",
                         gradient: "bg-gradient-to-br from-green-500 via-green-600 to-green-900"
-                    }
-                ]
-            },
-            {
-                name: "Mensagens internas",
-                image: "https://img.icons8.com/ios-filled/50/000000/chat-message.png",
-                description: "Acesse suas mensagens internas.",
-                gradient: "bg-gradient-to-br from-gray-500 via-gray-600 to-gray-900",
-                subOptions: [
+                    },
                     {
                         name: "Enviadas",
                         image: "https://img.icons8.com/ios-filled/50/000000/sent.png",
@@ -285,7 +336,7 @@ export const PAGE_ITEMS: PageItemsProps[] = [
                         route: ROUTES.inbox,
                         description: "Veja mensagens recebidas.",
                         gradient: "bg-gradient-to-br from-green-500 via-green-600 to-green-900"
-                    }
+                    },
                 ]
             }
         ]

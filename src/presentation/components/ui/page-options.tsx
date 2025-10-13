@@ -20,7 +20,7 @@ export default function PageOptions() {
             {items && (
                 <div>
                     {/* Colocando um título geral para manter o padrão */}
-                    {items.options.some(option => !option.subOptions && option.route) && (<TopicTitle title="Opções Gerais" />)}
+                    {items.options.some(option => !option.subOptions && option.route) && (<TopicTitle title={window.location.pathname.includes("inicio") ? "Acesso rápido" : "Opções Gerais"} />)}
                     {/* Cards dos itens que não possuem sub-opções */}
                     <CardContainer options={items.options.filter(option => !option.subOptions && option.route) as OptionsCardOption[]} />
                     {/* Cards dos itens que possuem sub-opções     */}
