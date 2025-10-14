@@ -2,7 +2,7 @@ import type { StudentActivitiesResponseDTO } from "@/application/dto/student-act
 import { formatDate } from "@/presentation/utils/format-date";
 import { TooltipTrigger } from "@radix-ui/react-tooltip";
 import type { ColumnDef } from "@tanstack/react-table";
-import { Trash2 } from "lucide-react";
+import { Check, Trash2 } from "lucide-react";
 import { Button } from "../../ui/button";
 import { Tooltip, TooltipContent } from "../../ui/tooltip";
 
@@ -62,17 +62,25 @@ export const createColumns = ({ onDelete }: ColumnsProps): ColumnDef<StudentActi
         cell: ({ row }) => {
             const activity = row.original;
             return (
-                <Button
-                    variant={"destructive"}
-                    onClick={async () => {
-                        try {
-                            await onDelete(activity.COD_LANC);
-                        } catch (error) {
-                            console.error("Error deleting activity:", error);
-                        }
-                    }}>
-                    <Trash2 />
-                </Button>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button
+                            variant={activity.CAR_HORHOM && activity.CAR_HORHOM > 0 ? "outline" : "destructive"}
+                            onClick={async () => {
+                                if (activity.CAR_HORHOM && activity.CAR_HORHOM > 0) return;
+                                try {
+                                    await onDelete(activity.COD_LANC);
+                                } catch (error) {
+                                    console.error("Error deleting activity:", error);
+                                }
+                            }}>
+                            {activity.CAR_HORHOM && activity.CAR_HORHOM > 0 ? <Check /> : <Trash2 />}
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        {activity.CAR_HORHOM && activity.CAR_HORHOM > 0 ? "Atividade validada" : "Excluir atividade"}
+                    </TooltipContent>
+                </Tooltip>
             )
         },
     }

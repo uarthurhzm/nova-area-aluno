@@ -3,7 +3,10 @@ import { formatDate } from "@/presentation/utils/format-date";
 import type { ColumnDef } from "@tanstack/react-table";
 
 export const columns: ColumnDef<EventsResponseDTO>[] = [
-
+    {
+        accessorKey: "TITULO",
+        header: "Nome",
+    },
     {
         accessorKey: "NM_SALA",
         header: "Local",

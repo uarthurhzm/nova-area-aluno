@@ -2,7 +2,7 @@ import type { StudentEnrollmentCertificatesResponseDTO } from "@/application/dto
 import type { UserEntity } from "@/domain/entities/user-entity";
 import { formatDate } from "@/presentation/utils/format-date";
 import type { ColumnDef } from "@tanstack/react-table";
-import { CreditCard, ReceiptText } from "lucide-react";
+import { Check, CreditCard, ReceiptText } from "lucide-react";
 import Flex from "../../ui/flex";
 import GridActionButton from "../../ui/GridActionButton";
 import { Pix } from "../../ui/pix";
@@ -23,20 +23,33 @@ export const createColumns = (userData: UserEntity): ColumnDef<StudentEnrollment
         cell: ({ row }) => formatDate(row.original.DT_INSC),
     },
     {
+        accessorKey: "DT_PAGO",
+        header: "Data de Pagamento",
+        cell: ({ row }) => formatDate(row.original.DT_PAGO),
+    },
+    {
         accessorKey: "actions",
         header: "Ações",
         cell: ({ row }) => {
+            const certificate = row.original;
             return (
                 <Flex>
-                    <GridActionButton icon={Pix} label="Pagar via Pix" onClick={() => {
-                        window.open('https://services.unilago.edu.br/pixItau.php?action=pix&l=' + row.original.CD_LANCREC + '&c=' + userData.CD_MAT.toString().trim() + '&r=' + userData.CD_MAT.toString().trim())
-                    }} />
-                    <GridActionButton icon={CreditCard} label="Pagar com Cartão de Crédito" onClick={() => {
-                        window.open('https://services.unilago.edu.br/pagamento.php?l=' + row.original.CD_LANCREC + '&c=' + userData.CD_MAT.toString().trim())
-                    }} />
-                    <GridActionButton icon={ReceiptText} label="Pagar via Boleto" onClick={() => {
-                        window.open('https://pagamentos.unilago.edu.br/itau/boleto-integrado.php?l=' + row.original.CD_LANCREC + '&c=' + userData.CD_MAT.toString().trim() + '&f=' + userData.CD_MAT.toString().trim())
-                    }} />
+                    {certificate.CD_BXAREC === 0 ? (
+                        <>
+                            <GridActionButton icon={Pix} label="Pagar via Pix" onClick={() => {
+                                window.open('https://services.unilago.edu.br/pixItau.php?action=pix&l=' + certificate.CD_LANCREC + '&c=' + userData.CD_MAT.toString().trim() + '&r=' + userData.CD_MAT.toString().trim())
+                            }} />
+                            <GridActionButton icon={CreditCard} label="Pagar com Cartão de Crédito" onClick={() => {
+                                window.open('https://services.unilago.edu.br/pagamento.php?l=' + certificate.CD_LANCREC + '&c=' + userData.CD_MAT.toString().trim())
+                            }} />
+                            <GridActionButton icon={ReceiptText} label="Pagar via Boleto" onClick={() => {
+                                window.open('https://pagamentos.unilago.edu.br/itau/boleto-integrado.php?l=' + certificate.CD_LANCREC + '&c=' + userData.CD_MAT.toString().trim() + '&f=' + userData.CD_MAT.toString().trim())
+                            }} />
+                        </>
+                    ) : (
+                        <GridActionButton icon={Check} label="Pago" onClick={() => { }} />
+                    )}
+
                 </Flex >
             )
         },
