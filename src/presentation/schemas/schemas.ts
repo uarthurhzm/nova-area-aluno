@@ -78,8 +78,8 @@ export const NEW_MESSAGE_SCHEMA = z.object({
 
 //SECTION - Presença via local
 export const PRESENCE_SCHEMA = z.object({
-    unitId: z.string().min(1, { message: "Informe uma unidade" }),
     disciplineId: z.string().min(1, { message: "Informe uma disciplina" }),
+    unitId: z.string().min(1, { message: "Informe uma unidade" }),
     date: z.string().min(1, { message: "Informe uma data válida" }).refine(
         (date) => {
             const today = new Date().toISOString().split('T')[0];
