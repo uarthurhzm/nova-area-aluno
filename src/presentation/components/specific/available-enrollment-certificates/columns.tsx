@@ -25,7 +25,7 @@ export const createColumns = (userData: UserEntity): ColumnDef<StudentEnrollment
     {
         accessorKey: "DT_PAGO",
         header: "Data de Pagamento",
-        cell: ({ row }) => formatDate(row.original.DT_PAGO),
+        cell: ({ row }) => row.original.DT_PAGO ? formatDate(row.original.DT_PAGO) : "",
     },
     {
         accessorKey: "actions",
