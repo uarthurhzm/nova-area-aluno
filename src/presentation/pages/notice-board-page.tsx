@@ -34,14 +34,27 @@ export default function NoticeBoardPage() {
         )
     }
 
-    const handlePriorityColor = (priority: 'Alta' | 'Media' | 'Baixa') => {
+    const handlePriorityColor = (priority: '1' | '2' | '3') => {
         switch (priority) {
-            case 'Alta':
-                return 'bg-red-500 text-white rounded-full px-2 py-1 text-sm';
-            case 'Media':
-                return 'bg-yellow-500 text-white rounded-full px-2 py-1 text-sm';
-            case 'Baixa':
+            case '1':
                 return 'bg-green-500 text-white rounded-full px-2 py-1 text-sm';
+            case '2':
+                return 'bg-yellow-500 text-white rounded-full px-2 py-1 text-sm';
+            case '3':
+                return 'bg-red-500 text-white rounded-full px-2 py-1 text-sm';
+            default:
+                return '';
+        }
+    }
+
+    const handlePriorityText = (priority: '1' | '2' | '3') => {
+        switch (priority) {
+            case '1':
+                return 'Baixa';
+            case '2':
+                return 'Média';
+            case '3':
+                return 'Alta';
             default:
                 return '';
         }
@@ -51,31 +64,36 @@ export default function NoticeBoardPage() {
         <StandardSubpage title="Mural de Avisos">
             <Flex className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {data.length > 0 ? data.map((notice, idx) => (
-                    <Card key={idx} className="hover:shadow-lg transition-shadow hover:scale-[1.02]">
-                        <CardHeader>
+                    <Card
+                        key={idx}
+                        className="hover:shadow-lg transition-shadow hover:scale-[1.02] flex flex-col h-full"
+                    >
+                        <CardHeader className="pb-2">
                             <CardTitle>
-                                <Flex>
-                                    <Column size={6}>
-                                        <span className="text-lg">{notice.TITULO} • </span>
-                                        <span className={handlePriorityColor(notice.PRIORIDADE)}>{notice.PRIORIDADE}</span>
-                                    </Column>
-                                    <Column size={6}>
-                                        <span className="text-sm text-gray-500">{formatDate(notice.DATA)} • </span>
-                                        <span className="text-sm text-gray-500">{notice.USUARIO}</span>
-                                    </Column>
+                                <Flex className="justify-between items-start gap-2 flex-wrap">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-lg font-semibold">{notice.TITULO}</span>
+                                        <span className={handlePriorityColor(notice.PRIORIDADE)}>
+                                            {handlePriorityText(notice.PRIORIDADE)}
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-col items-end text-right">
+                                        <span className="text-xs text-gray-500">{formatDate(notice.DATA)}</span>
+                                        <span className="text-xs text-gray-400">{notice.USUARIO}</span>
+                                    </div>
                                 </Flex>
                             </CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="flex-1 flex flex-col justify-between">
                             <div
-                                className="line-clamp-3 overflow-hidden"
+                                className="line-clamp-3 overflow-hidden text-sm text-gray-700"
                                 dangerouslySetInnerHTML={{ __html: notice.RECADO }}
                             ></div>
                             {notice.RECADO.length > 150 && (
                                 <div className="text-end mt-3">
                                     <Dialog>
                                         <DialogTrigger asChild>
-                                            <Button variant="link" className="text-blue-500">Ver mais</Button>
+                                            <Button variant="link" className="text-blue-500 p-0 h-auto min-h-0">Ver mais</Button>
                                         </DialogTrigger>
                                         <DialogContent>
                                             <DialogHeader>
