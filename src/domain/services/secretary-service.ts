@@ -8,6 +8,7 @@ import type { AxiosInstance } from "axios";
 import { SecretaryRepository } from "../repositories/secretary-repository";
 import type { StudentDpsResponseDTO } from "@/application/dto/student-dps-response-dto";
 import type { PostSubstituteExamRequestDTO } from "@/application/dto/post-substitute-exam-request-dto";
+import type { GetAllSectorsResponseDTO } from "@/application/dto/get-all-sectors-response-dto";
 
 
 export class SecretaryService {
@@ -51,5 +52,9 @@ export class SecretaryService {
 
     async getStudentDependencies(cd_mat: number): Promise<StudentDpsResponseDTO[]> {
         return this.secretarysRepository.getStudentDependencies(cd_mat);
+    }
+
+    async getAllSectors(): Promise<GetAllSectorsResponseDTO[]> {
+        return this.secretarysRepository.getAllSectors();
     }
 }
