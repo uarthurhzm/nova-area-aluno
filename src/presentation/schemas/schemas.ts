@@ -129,3 +129,28 @@ export const COMMENTS_MESSAGE_SCHEMA = z.object({
     comment: z.string().min(1, { message: "O comentário não pode ser vazio" }),
 })
 //!SECTION
+
+//SECTION - Formulário de Requerimento de Atendimento
+export const ATTENDANCE_REQUEST_SCHEMA = z.object({
+    sector: z.string().min(1, { message: "Selecione um setor" }),
+    subject: z.string().min(1, { message: "Selecione um assunto" }),
+    requestType: z.string().min(1, { message: "Selecione um tipo de requerimento" }),
+    disciplineIds: z.array(z.string()).optional(),
+    documentId: z.string().optional(),
+    description: z.string().min(10, { message: "A descrição deve ter pelo menos 10 caracteres" }),
+    attachments: z
+        .array(
+            z.
+                any()
+                .refine((file) => file instanceof File, { message: "Selecione um arquivo" })
+                // .refine(
+                //     (file) => file?.type === "application/pdf",
+                //     { message: "Apenas arquivos PDF são permitidos" }
+                // )
+                .refine(
+                    (file) => file?.size <= MAX_FILE_SIZE,
+                    { message: "Arquivo deve ter no máximo 10MB" }
+                )
+
+        ).optional()
+});
