@@ -60,6 +60,9 @@ export class SecretaryService {
     }
 
     async getProtocolTypesBySector(cd_set: number): Promise<GetProtocolTypesBySectorResponseDTO[]> {
+        if (cd_set <= 0) {
+            return [];
+        }
         return this.secretarysRepository.getProtocolTypesBySector(cd_set);
     }
 }
