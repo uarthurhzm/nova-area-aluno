@@ -11,6 +11,7 @@ interface FormSelectProps<T extends FieldValues> {
     className?: string;
     valueName?: string;
     optionName?: string;
+    onChange?: (value: string) => void;
 }
 
 export default function FormSelect<T extends FieldValues>({
@@ -21,7 +22,8 @@ export default function FormSelect<T extends FieldValues>({
     options,
     className = "",
     valueName = "id",
-    optionName = "name"
+    optionName = "name",
+    onChange
 
 }: FormSelectProps<T>) {
     return (
@@ -33,10 +35,15 @@ export default function FormSelect<T extends FieldValues>({
                     <FormLabel>{label}</FormLabel>
                     <FormControl>
                         <Select
-                            name={name}
                             disabled={options.length === 0}
-                            onValueChange={field.onChange}
-                            value={field.value}>
+                            onValueChange={(event) => {
+                                field.onChange(event);
+                                if (onChange) {
+                                    onChange(event);
+                                }
+                            }}
+                            value={field.value?.toString()}
+                        >
                             <SelectTrigger className="w-full">
                                 <SelectValue placeholder={options.length === 0 ? "NENHUMA OPÇÃO DISPONÍVEL" : placeholder} />
                             </SelectTrigger>
@@ -45,8 +52,7 @@ export default function FormSelect<T extends FieldValues>({
                                     <SelectItem key={`${option[valueName]}-${index}`} value={String(option[valueName])}>
                                         {option[optionName]}
                                     </SelectItem>
-                                )
-                                )}
+                                ))}
                             </SelectContent>
                         </Select>
                     </FormControl>
