@@ -1,5 +1,6 @@
 import type { DeleteExamRequestDTO } from "@/application/dto/delete-exam-request-dto";
 import type { GetAllSectorsResponseDTO } from "@/application/dto/get-all-sectors-response-dto";
+import type { GetProtocolTypesBySectorResponseDTO } from "@/application/dto/get-protocol-types-by-sector-response-dto";
 import type { PostAcademicRecordRequestDTO } from "@/application/dto/post-academic-record-request-dto";
 import type { PostEnrollmentCertificateDTO } from "@/application/dto/post-enrollment-certificate-dto";
 import type { PostSubstituteExamRequestDTO } from "@/application/dto/post-substitute-exam-request-dto";
@@ -62,6 +63,11 @@ export class SecretaryRepository {
 
     async getAllSectors(): Promise<GetAllSectorsResponseDTO[]> {
         const response = await this.api.get<GetAllSectorsResponseDTO[]>("/secretary/sectors");
+        return response.data;
+    }
+
+    async getProtocolTypesBySector(cd_set: number): Promise<GetProtocolTypesBySectorResponseDTO[]> {
+        const response = await this.api.get<GetProtocolTypesBySectorResponseDTO[]>(`/secretary/sectors/${cd_set.toString().trim()}/protocol-types`);
         return response.data;
     }
 }
