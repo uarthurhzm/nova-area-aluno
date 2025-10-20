@@ -31,6 +31,8 @@ export default function AppLayout({ title, goBackButton, children }: { title?: s
     if (!userData) {
         return null;
     }
+    console.log(userData);
+
 
     return (
         <div className="w-full h-full min-h-screen min-w-screen bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200 dark:from-gray-900 dark:via-gray-900 dark:to-black transition-colors duration-300">

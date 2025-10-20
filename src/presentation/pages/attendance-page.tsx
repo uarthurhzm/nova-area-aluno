@@ -54,7 +54,6 @@ export default function AttendancePage() {
             }
         }
 
-        // continuar daqui
         handleSubmit();
     }
 

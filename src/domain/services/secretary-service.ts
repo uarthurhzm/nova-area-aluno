@@ -10,6 +10,7 @@ import type { StudentDpsResponseDTO } from "@/application/dto/student-dps-respon
 import type { PostSubstituteExamRequestDTO } from "@/application/dto/post-substitute-exam-request-dto";
 import type { GetAllSectorsResponseDTO } from "@/application/dto/get-all-sectors-response-dto";
 import type { GetProtocolTypesBySectorResponseDTO } from "@/application/dto/get-protocol-types-by-sector-response-dto";
+import type { PostAttendanceRequestDTO } from "@/application/dto/post-attendance-resquest-dto";
 
 
 export class SecretaryService {
@@ -64,5 +65,28 @@ export class SecretaryService {
             return [];
         }
         return this.secretarysRepository.getProtocolTypesBySector(cd_set);
+    }
+
+    async postAttendanceRequest(data: PostAttendanceRequestDTO): Promise<void> {
+        const formData = new FormData();
+        formData.append('cd_alu', data.cd_alu.toString());
+        formData.append('cd_cso', data.cd_cso.toString());
+        formData.append('anoval_mat', data.anoval_mat.toString());
+        formData.append('semval_mat', data.semval_mat.toString());
+        formData.append('serie_mat', data.serie_mat.toString());
+        formData.append('periodo_mat', data.periodo_mat.toString());
+        formData.append('sector', data.sector.toString());
+        formData.append('subject', data.subject.toString());
+        formData.append('requestType', data.requestType?.toString() ?? '');
+        formData.append('disciplineIds', JSON.stringify(data.disciplineIds));
+        formData.append('documentId', data.documentId?.toString() ?? '');
+        formData.append('description', data.description);
+        if (data.attachments && Array.isArray(data.attachments)) {
+            data.attachments.forEach((file) => {
+                formData.append('attachments', file);
+            });
+        }
+
+        return this.secretarysRepository.postAttendanceRequest(formData as unknown as PostAttendanceRequestDTO);
     }
 }
