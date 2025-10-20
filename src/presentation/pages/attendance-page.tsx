@@ -1,6 +1,6 @@
 import { DOCUMENT_OPTIONS } from "@/shared/constants/attendance/document-options";
 import { ATTENDANCE_DOCUMENT_SUBOPTION_ID, getSubjectsWithSuboptions } from "@/shared/constants/attendance/subjects-with-suboptions";
-import { Send } from "lucide-react";
+import { LoaderCircle, Send } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../components/ui/button";
 import { Form } from "../components/ui/form";
@@ -28,6 +28,7 @@ export default function AttendancePage() {
     const { data: studentDisciplines, loading: loadingStudentDisciplines } = useStudentDisciplines();
     const [protocolSubOptions, setProtocolSubOptions] = useState<{ id: number, name: string }[]>([]);
     const [showRequestType, setShowRequestType] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     if (loadingSectors || loadingProtocolTypes || loadingStudentDisciplines) {
         return (
@@ -40,8 +41,17 @@ export default function AttendancePage() {
     const handleFormSubmit = async () => {
         //NOTE - Requerimento de documento - solicitar / requerer
         if (selectedSubject == ATTENDANCE_DOCUMENT_SUBOPTION_ID && selectedRequestType == 2) {
+            setIsSubmitting(true);
+
             const option = DOCUMENT_OPTIONS.find(opt => opt.id === Number(form.getValues("documentId")));
-            await postAttendanceRequest(option!);
+            try {
+                await postAttendanceRequest(option!);
+            } catch (error) {
+                console.log(`Erro ao enviar requerimento de documento: ${error}`);
+            }
+            finally {
+                setIsSubmitting(false);
+            }
         }
 
         // continuar daqui
@@ -60,21 +70,21 @@ export default function AttendancePage() {
                         valueName="CD_SET"
                         options={sectors}
                     />
-                    {protocolTypes.length > 0 && (
-                        <FormSelect
-                            control={form.control}
-                            label="Assunto"
-                            name="subject"
-                            optionName="DESCR_REQUERIMENTO"
-                            valueName="CD_REQ"
-                            options={protocolTypes}
-                            onChange={(value) => {
-                                const subOptions = getSubjectsWithSuboptions(studentDisciplines).find(item => item.subject === Number(value));
-                                setProtocolSubOptions(subOptions ? subOptions.options : []);
-                                setShowRequestType(Number(value) === ATTENDANCE_DOCUMENT_SUBOPTION_ID);
-                            }}
-                        />
-                    )}
+
+                    <FormSelect
+                        control={form.control}
+                        label="Assunto"
+                        name="subject"
+                        optionName="DESCR_REQUERIMENTO"
+                        valueName="CD_REQ"
+                        options={protocolTypes}
+                        onChange={(value) => {
+                            const subOptions = getSubjectsWithSuboptions(studentDisciplines).find(item => item.subject === Number(value));
+                            setProtocolSubOptions(subOptions ? subOptions.options : []);
+                            setShowRequestType(Number(value) === ATTENDANCE_DOCUMENT_SUBOPTION_ID);
+                        }}
+                    />
+
                     {protocolSubOptions.length > 0 && (
                         <FormSelect
                             control={form.control}
@@ -114,8 +124,12 @@ export default function AttendancePage() {
                             type="button"
                             className="w-full md:w-auto"
                             onClick={handleFormSubmit}
+                            disabled={form.formState.isSubmitting || isSubmitting}
                         >
-                            Enviar Requerimento <Send />
+                            {isSubmitting || form.formState.isSubmitting
+                                ? <>Enviando <LoaderCircle className="animate-spin" /></>
+                                : <>Enviar Requerimento <Send /></>
+                            }
                         </Button>
                     </div>
                 </form>

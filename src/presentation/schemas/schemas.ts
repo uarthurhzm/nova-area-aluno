@@ -1,3 +1,4 @@
+import { ATTENDANCE_DOCUMENT_SUBOPTION_ID } from "@/shared/constants/attendance/subjects-with-suboptions";
 import { MAX_FILE_SIZE } from "@/shared/constants/max-file-size";
 import z from "zod";
 
@@ -134,14 +135,14 @@ export const COMMENTS_MESSAGE_SCHEMA = z.object({
 export const ATTENDANCE_REQUEST_SCHEMA = z.object({
     sector: z.string().min(1, { message: "Selecione um setor" }),
     subject: z.string().min(1, { message: "Selecione um assunto" }),
-    requestType: z.string().min(1, { message: "Selecione um tipo de requerimento" }),
+    requestType: z.string().optional(),
     disciplineIds: z.array(z.string()).optional(),
     documentId: z.string().optional(),
     description: z.string().min(10, { message: "A descrição deve ter pelo menos 10 caracteres" }),
     attachments: z
         .array(
-            z.
-                any()
+            z
+                .any()
                 .refine((file) => file instanceof File, { message: "Selecione um arquivo" })
                 // .refine(
                 //     (file) => file?.type === "application/pdf",
@@ -151,6 +152,22 @@ export const ATTENDANCE_REQUEST_SCHEMA = z.object({
                     (file) => file?.size <= MAX_FILE_SIZE,
                     { message: "Arquivo deve ter no máximo 10MB" }
                 )
-
         ).optional()
+}).superRefine((data, ctx) => {
+    if (Number(data.subject) === ATTENDANCE_DOCUMENT_SUBOPTION_ID) {
+        if (!data.documentId || data.documentId.length === 0) {
+            ctx.addIssue({
+                code: "custom",
+                message: "Selecione um detalhamento",
+                path: ["documentId"]
+            });
+        }
+        if (!data.requestType || data.requestType.length === 0) {
+            ctx.addIssue({
+                code: "custom",
+                message: "Selecione um tipo de requerimento",
+                path: ["requestType"]
+            });
+        }
+    }
 });
