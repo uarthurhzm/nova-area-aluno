@@ -81,12 +81,13 @@ export class SecretaryService {
         formData.append('disciplineIds', JSON.stringify(data.disciplineIds));
         formData.append('documentId', data.documentId?.toString() ?? '');
         formData.append('description', data.description);
-        if (data.attachments && Array.isArray(data.attachments)) {
-            data.attachments.forEach((file) => {
-                formData.append('attachments', file);
+
+        if (data.attachments && data.attachments.length > 0) {
+            data.attachments.forEach((file, index) => {
+            formData.append(`attachments[${index}]`, file);
             });
         }
 
-        return this.secretarysRepository.postAttendanceRequest(formData as unknown as PostAttendanceRequestDTO);
+        return await this.secretarysRepository.postAttendanceRequest(formData as unknown as PostAttendanceRequestDTO);
     }
 }

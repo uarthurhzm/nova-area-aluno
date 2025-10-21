@@ -140,18 +140,25 @@ export const ATTENDANCE_REQUEST_SCHEMA = z.object({
     documentId: z.string().optional(),
     description: z.string().min(10, { message: "A descrição deve ter pelo menos 10 caracteres" }),
     attachments: z
-        .array(
-            z
-                .any()
-                .refine((file) => file instanceof File, { message: "Selecione um arquivo" })
-                // .refine(
-                //     (file) => file?.type === "application/pdf",
-                //     { message: "Apenas arquivos PDF são permitidos" }
-                // )
-                .refine(
-                    (file) => file?.size <= MAX_FILE_SIZE,
-                    { message: "Arquivo deve ter no máximo 10MB" }
-                )
+        .preprocess(
+            (val) => {
+                if (val instanceof File) return [val];
+                if (Array.isArray(val)) return val;
+                return [];
+            },
+            z.array(
+                z
+                    .any()
+                    .refine((file) => file instanceof File, { message: "Selecione um arquivo" })
+                    // .refine(
+                    //     (file) => file?.type === "application/pdf",
+                    //     { message: "Apenas arquivos PDF são permitidos" }
+                    // )
+                    .refine(
+                        (file) => file?.size <= MAX_FILE_SIZE,
+                        { message: "Arquivo deve ter no máximo 10MB" }
+                    )
+            )
         ).optional()
 }).superRefine((data, ctx) => {
     if (Number(data.subject) === ATTENDANCE_DOCUMENT_SUBOPTION_ID) {

@@ -124,7 +124,7 @@ export default function AttendancePage() {
                     <FormFileInput
                         control={form.control}
                         label="Anexar Arquivo"
-                        name="file"
+                        name="attachments"
                     />
 
                     <div className="text-end">

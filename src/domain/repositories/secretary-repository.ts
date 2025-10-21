@@ -73,6 +73,11 @@ export class SecretaryRepository {
     }
 
     async postAttendanceRequest(data: PostAttendanceRequestDTO): Promise<void> {
-        await this.api.post("/secretary/attendance-request", data);
+        await this.api.post("/secretary/attendance-request", data, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        );
     }
 }

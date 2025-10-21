@@ -31,7 +31,7 @@ export const useAttendanceForm = () => {
                     ...data
                 } as unknown as PostAttendanceRequestDTO);
                 showSuccess("Requerimento enviado com sucesso!");
-                form.reset();
+                // form.reset();
             } catch (error) {
                 console.error(error);
             }
