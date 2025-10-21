@@ -1,4 +1,4 @@
-import { ATTENDANCE_DOCUMENT_SUBOPTION_ID } from "@/shared/constants/attendance/subjects-with-suboptions";
+import { ATTENDANCE_DISCIPLINES_SUBOPTION_ID, ATTENDANCE_DOCUMENT_SUBOPTION_ID } from "@/shared/constants/attendance/subjects-with-suboptions";
 import { MAX_FILE_SIZE } from "@/shared/constants/max-file-size";
 import z from "zod";
 
@@ -167,6 +167,14 @@ export const ATTENDANCE_REQUEST_SCHEMA = z.object({
                 code: "custom",
                 message: "Selecione um tipo de requerimento",
                 path: ["requestType"]
+            });
+        }
+    } else if (Number(data.subject) === ATTENDANCE_DISCIPLINES_SUBOPTION_ID) {
+        if (!data.disciplineIds || data.disciplineIds.length === 0) {
+            ctx.addIssue({
+                code: "custom",
+                message: "Selecione ao menos uma disciplina",
+                path: ["disciplineIds"]
             });
         }
     }
