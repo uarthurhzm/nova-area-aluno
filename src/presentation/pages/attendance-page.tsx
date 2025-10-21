@@ -14,6 +14,7 @@ import { useSectors } from "../hooks/data/use-sectors";
 import { useAttendanceForm } from "../hooks/form/use-attendance-form";
 import { usePostAttendanceRequest } from "../hooks/form/use-post-attendance-request";
 import { useStudentDisciplines } from "../hooks/use-student-disciplines";
+import FormMultiSelect from "../components/ui/form-multi-select";
 
 export default function AttendancePage() {
     const { form, handleSubmit } = useAttendanceForm();
@@ -84,11 +85,19 @@ export default function AttendancePage() {
                         }}
                     />
 
-                    {protocolSubOptions.length > 0 && (
+                    {protocolSubOptions.length > 0 &&
+                        selectedSubject == ATTENDANCE_DOCUMENT_SUBOPTION_ID ? (
                         <FormSelect
                             control={form.control}
                             label="Detalhamento"
-                            name="documentId"
+                            name={"documentId"}
+                            options={protocolSubOptions}
+                        />
+                    ) : (
+                        <FormMultiSelect
+                            control={form.control}
+                            label="Detalhamento"
+                            name="disciplineIds"
                             options={protocolSubOptions}
                         />
                     )}
