@@ -1,3 +1,4 @@
+import type { GetStudentAttendanceRequestsResponseDTO } from "@/application/dto/attendance/get-student-attendance-requests-response-dto";
 import type { DeleteExamRequestDTO } from "@/application/dto/delete-exam-request-dto";
 import type { GetAllSectorsResponseDTO } from "@/application/dto/get-all-sectors-response-dto";
 import type { GetProtocolTypesBySectorResponseDTO } from "@/application/dto/get-protocol-types-by-sector-response-dto";
@@ -79,5 +80,10 @@ export class SecretaryRepository {
             }
         }
         );
+    }
+
+    async getStudentAttendanceRequests(cd_alu: number): Promise<GetStudentAttendanceRequestsResponseDTO[]> {
+        const response = await this.api.get(`/secretary/attendance/students/${cd_alu.toString().trim()}/requests`);
+        return response.data;
     }
 }

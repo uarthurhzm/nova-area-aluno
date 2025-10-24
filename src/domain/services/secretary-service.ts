@@ -11,6 +11,7 @@ import type { PostSubstituteExamRequestDTO } from "@/application/dto/post-substi
 import type { GetAllSectorsResponseDTO } from "@/application/dto/get-all-sectors-response-dto";
 import type { GetProtocolTypesBySectorResponseDTO } from "@/application/dto/get-protocol-types-by-sector-response-dto";
 import type { PostAttendanceRequestDTO } from "@/application/dto/post-attendance-resquest-dto";
+import type { GetStudentAttendanceRequestsResponseDTO } from "@/application/dto/attendance/get-student-attendance-requests-response-dto";
 
 
 export class SecretaryService {
@@ -84,10 +85,14 @@ export class SecretaryService {
 
         if (data.attachments && data.attachments.length > 0) {
             data.attachments.forEach((file, index) => {
-            formData.append(`attachments[${index}]`, file);
+                formData.append(`attachments[${index}]`, file);
             });
         }
 
         return await this.secretarysRepository.postAttendanceRequest(formData as unknown as PostAttendanceRequestDTO);
+    }
+
+    async getStudentAttendanceRequests(cd_alu: number): Promise<GetStudentAttendanceRequestsResponseDTO[]> {
+        return await this.secretarysRepository.getStudentAttendanceRequests(cd_alu);
     }
 }
