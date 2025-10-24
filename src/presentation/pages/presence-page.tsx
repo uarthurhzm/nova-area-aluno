@@ -19,6 +19,8 @@ import { useAuth } from "../contexts/AuthContext";
 import { getCurrentLocation } from "../utils/get-current-location";
 import { Label } from "../components/ui/label";
 import { Input } from "../components/ui/input";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/shared/constants/router";
 
 export default function PresencePage() {
     const [showPresenceForm, setShowPresenceForm] = useState(false);
@@ -46,6 +48,7 @@ type PresenceOptionsProps = {
 };
 
 const SelectSection = ({ setShowPresenceForm, setShowQrCodeScanner }: { setShowPresenceForm: (value: boolean) => void; setShowQrCodeScanner: (value: boolean) => void; }) => {
+    const navigate = useNavigate();
     return (
         <>
             <TextCenter text="Selecione um" />
@@ -54,14 +57,14 @@ const SelectSection = ({ setShowPresenceForm, setShowQrCodeScanner }: { setShowP
                     label="Via Local"
                     variant="primary"
                     Icon={MapPin}
-                    onClick={() => setShowPresenceForm(true)}
+                    onClick={() => navigate(ROUTES.locationPresence)}
                 />
                 <span className="font-bold text-lg">ou</span>
                 <PresenceOptions
                     label="Via QR Code"
                     variant="secondary"
                     Icon={QrCode}
-                    onClick={() => setShowQrCodeScanner(true)}
+                    onClick={() => navigate(ROUTES.qrCodePresence)}
                 />
             </Flex>
         </>

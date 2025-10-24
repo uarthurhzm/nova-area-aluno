@@ -22,6 +22,8 @@ export const ROUTES = {
   sent: "/aluno/mensagens/enviadas",
   noticeBoard: "/aluno/avisos",
   presence: "/aluno/presenca",
+  locationPresence: "/aluno/presenca/localizacao",
+  qrCodePresence: "/aluno/presenca/qr-code",
   schedule: "/aluno/agenda",
   grades: "/aluno/estudos/boletim-faltas",
   studentSchedule: "/aluno/estudos/agenda",

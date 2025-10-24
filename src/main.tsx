@@ -49,6 +49,8 @@ import { ROUTES } from './shared/constants/router'
 import AttendanceRequestPage from './presentation/pages/attendance-request-page'
 import AttendancePage from './presentation/pages/attendance-page'
 import AttendanceStatusPage from './presentation/pages/attendance-status-page'
+import LocationPresencePage from './presentation/pages/location-presence-page'
+import QrCodePresencePage from './presentation/pages/qr-code-presence-page'
 
 function Main(): JSX.Element {
   useTheme();
@@ -84,6 +86,8 @@ function Main(): JSX.Element {
                 <Route path={ROUTES.sent} element={<SentReceivedMessagesPage context="sent" />} />
                 <Route path={ROUTES.inbox} element={<SentReceivedMessagesPage context="received" />} />
                 <Route path={ROUTES.noticeBoard} element={<NoticeBoardPage />} />
+                <Route path={ROUTES.locationPresence} element={<LocationPresencePage />} />
+                <Route path={ROUTES.qrCodePresence} element={<QrCodePresencePage />} />
                 <Route path={ROUTES.presence} element={<PresencePage />} />
                 <Route path={ROUTES.schedule} element={<SchedulePage />} />
                 <Route path={ROUTES.grades} element={<GradesPage />} />
