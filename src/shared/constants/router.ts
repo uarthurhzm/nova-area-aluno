@@ -27,7 +27,7 @@ export const ROUTES = {
   studentSchedule: "/aluno/estudos/agenda",
   syllabus: "/aluno/estudos/ementa",
   extracurricularActivities: "/aluno/estudos/atividades-complementares",
-  attendance: "/aluno/atendimento/secretaria/atendimento",
+  attendanceRequest: "/aluno/atendimento/secretaria/atendimento",
   enrollmentCertificate: "/aluno/atendimento/secretaria/atestado",
   academicRecord: "/aluno/atendimento/secretaria/historico",
   substituteExams: "/aluno/atendimento/secretaria/prova-substitutiva",
