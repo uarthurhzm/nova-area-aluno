@@ -33,7 +33,7 @@ export default function AttendanceRequestPage() {
 
     if (loadingSectors || loadingProtocolTypes || loadingStudentDisciplines) {
         return (
-            <StandardSubpage title="Requerimento de Atendimento">
+            <StandardSubpage title="Abrir um Requerimento">
                 <Skeleton className="h-10 w-full" />
             </StandardSubpage>
         )
@@ -59,7 +59,7 @@ export default function AttendanceRequestPage() {
     }
 
     return (
-        <StandardSubpage title="Requerimento de Atendimento">
+        <StandardSubpage title="Abrir um Requerimento">
             <Form {...form}>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <FormSelect

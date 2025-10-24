@@ -140,7 +140,7 @@ export const PAGE_ITEMS: PageItemsProps[] = [
                 name: "Requerimento de Atendimento",
                 image: "https://img.icons8.com/?size=100&id=50896&format=png&color=000000",
                 route: ROUTES.attendance,
-                description: "Abra um requerimento para atendimento na secretaria.",
+                description: "Abra um requerimento para atendimento ou veja o status dos seus requerimentos.",
                 gradient: "bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700"
             },
             {

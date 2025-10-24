@@ -29,6 +29,7 @@ export const ROUTES = {
   extracurricularActivities: "/aluno/estudos/atividades-complementares",
   attendance: "/aluno/atendimento/secretaria/atendimento",
   attendanceRequest: "/aluno/atendimento/secretaria/atendimento/requerimento",
+  attendanceStatus: "/aluno/atendimento/secretaria/atendimento/status",
   enrollmentCertificate: "/aluno/atendimento/secretaria/atestado",
   academicRecord: "/aluno/atendimento/secretaria/historico",
   substituteExams: "/aluno/atendimento/secretaria/prova-substitutiva",

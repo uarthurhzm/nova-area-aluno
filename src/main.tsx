@@ -48,6 +48,7 @@ import UserInfoPage from './presentation/pages/user-info-page'
 import { ROUTES } from './shared/constants/router'
 import AttendanceRequestPage from './presentation/pages/attendance-request-page'
 import AttendancePage from './presentation/pages/attendance-page'
+import AttendanceStatusPage from './presentation/pages/attendance-status-page'
 
 function Main(): JSX.Element {
   useTheme();
@@ -91,6 +92,7 @@ function Main(): JSX.Element {
                 <Route path={ROUTES.extracurricularActivities} element={<ExtracurricularPage />} />
                 <Route path={ROUTES.attendance} element={<AttendancePage />} />
                 <Route path={ROUTES.attendanceRequest} element={<AttendanceRequestPage />} />
+                <Route path={ROUTES.attendanceStatus} element={<AttendanceStatusPage />} />
                 <Route path={ROUTES.enrollmentCertificate} element={<EnrollmentCertificatePage />} />
                 <Route path={ROUTES.manuals} element={<ManualsPage />} />
                 <Route path={ROUTES.downloads} element={<DownloadsPage />} />
