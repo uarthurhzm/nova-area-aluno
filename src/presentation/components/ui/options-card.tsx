@@ -22,7 +22,7 @@ export default function OptionsCard({ options }: OptionsCardProps) {
             {options.map((option: OptionsCardOption, index: number) => (
                 <div
                     key={index}
-                    className={`group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl cursor-pointer transition-all duration-300 transform hover:-translate-y-1 ${option.gradient || 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900'
+                    className={`max-w-sm group relative overflow-hidden rounded-xl shadow-lg hover:shadow-2xl cursor-pointer transition-all duration-300 transform hover:-translate-y-1 ${option.gradient || 'bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900'
                         }`}
                     onClick={() => {
                         if (option.route.startsWith('http')) {
